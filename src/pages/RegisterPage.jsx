@@ -58,7 +58,7 @@ export default function RegisterPage() {
       <div className="max-w-md w-full bg-white rounded-2xl shadow-xl p-8">
         {/* Logo */}
         <div className="text-center mb-8">
-          <h1 className="text-4xl font-bold text-primary">BookMyHotel</h1>
+          <h1 className="text-4xl font-bold text-blue-600">BookMyHotel</h1>
           <p className="text-gray-600 mt-2">Create your account to start booking</p>
         </div>
 
@@ -89,7 +89,7 @@ export default function RegisterPage() {
               onChange={handleChange}
               required
               placeholder="John Doe"
-              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition"
+              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent transition focus:outline-none"
             />
           </div>
 
@@ -104,7 +104,7 @@ export default function RegisterPage() {
               onChange={handleChange}
               required
               placeholder="you@example.com"
-              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition"
+              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent transition focus:outline-none"
             />
           </div>
 
@@ -119,7 +119,7 @@ export default function RegisterPage() {
               onChange={handleChange}
               required
               placeholder="+971 50 123 4567"
-              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition"
+              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent transition focus:outline-none"
             />
           </div>
 
@@ -134,7 +134,7 @@ export default function RegisterPage() {
               onChange={handleChange}
               required
               placeholder="••••••••"
-              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition"
+              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent transition focus:outline-none"
             />
           </div>
 
@@ -149,7 +149,7 @@ export default function RegisterPage() {
               onChange={handleChange}
               required
               placeholder="••••••••"
-              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition"
+              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent transition focus:outline-none"
             />
           </div>
 
@@ -157,19 +157,19 @@ export default function RegisterPage() {
             <input
               type="checkbox"
               required
-              className="w-4 h-4 text-primary rounded focus:ring-primary mt-1"
+              className="w-4 h-4 text-blue-600 rounded focus:ring-blue-600 mt-1"
             />
             <label className="ml-2 text-xs text-gray-600">
               I agree to the{' '}
-              <a href="#" className="text-primary hover:underline">Terms of Service</a> and{' '}
-              <a href="#" className="text-primary hover:underline">Privacy Policy</a>
+              <a href="#" className="text-blue-600 hover:underline">Terms of Service</a> and{' '}
+              <a href="#" className="text-blue-600 hover:underline">Privacy Policy</a>
             </label>
           </div>
 
           <button
             type="submit"
             disabled={loading}
-            className="w-full bg-primary text-white py-3 rounded-lg font-semibold hover:bg-blue-700 transition transform hover:scale-105 disabled:opacity-70 disabled:cursor-not-allowed flex items-center justify-center"
+            className="w-full bg-blue-600 text-white py-3 rounded-lg font-semibold hover:bg-blue-700 transition transform hover:scale-105 disabled:opacity-70 disabled:cursor-not-allowed flex items-center justify-center"
           >
             {loading ? (
               <>
@@ -209,7 +209,7 @@ export default function RegisterPage() {
         {/* Login Link */}
         <p className="mt-8 text-center text-sm text-gray-600">
           Already have an account?{' '}
-          <Link to="/login" className="font-semibold text-primary hover:underline">
+          <Link to="/login" className="font-semibold text-blue-600 hover:underline">
             Log in
           </Link>
         </p>

@@ -17,7 +17,6 @@ export default function LoginPage() {
     setTimeout(() => {
       if (email === 'user@bookmyhotel.com' && password === 'password') {
         alert('Login Successful! (Demo)');
-        // In real app: save token, redirect
       } else if (email === 'admin@bookmyhotel.com' && password === 'admin123') {
         alert('Admin Login Successful!');
       } else {
@@ -32,7 +31,7 @@ export default function LoginPage() {
       <div className="max-w-md w-full bg-white rounded-2xl shadow-xl p-8">
         {/* Logo */}
         <div className="text-center mb-8">
-          <h1 className="text-4xl font-bold text-primary">BookMyHotel</h1>
+          <h1 className="text-4xl font-bold text-blue-600">BookMyHotel</h1>
           <p className="text-gray-600 mt-2">Welcome back! Please login to continue</p>
         </div>
 
@@ -54,7 +53,7 @@ export default function LoginPage() {
               onChange={(e) => setEmail(e.target.value)}
               required
               placeholder="you@example.com"
-              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition"
+              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent transition focus:outline-none"
             />
           </div>
 
@@ -68,7 +67,7 @@ export default function LoginPage() {
               onChange={(e) => setPassword(e.target.value)}
               required
               placeholder="••••••••"
-              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition"
+              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent transition focus:outline-none"
             />
           </div>
 
@@ -78,11 +77,11 @@ export default function LoginPage() {
                 type="checkbox"
                 checked={remember}
                 onChange={(e) => setRemember(e.target.checked)}
-                className="w-4 h-4 text-primary rounded focus:ring-primary"
+                className="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-600"
               />
               <span className="ml-2 text-sm text-gray-600">Remember me</span>
             </label>
-            <a href="#" class="text-sm text-primary hover:underline">
+            <a href="#" className="text-sm text-blue-600 hover:underline">
               Forgot password?
             </a>
           </div>
@@ -90,7 +89,7 @@ export default function LoginPage() {
           <button
             type="submit"
             disabled={loading}
-            className="w-full bg-primary text-white py-3 rounded-lg font-semibold hover:bg-blue-700 transition transform hover:scale-105 disabled:opacity-70 disabled:cursor-not-allowed"
+            className="w-full bg-blue-600 text-white py-3 rounded-lg font-semibold hover:bg-blue-700 transition transform hover:scale-105 disabled:opacity-70 disabled:cursor-not-allowed"
           >
             {loading ? (
               <span className="flex items-center justify-center">
@@ -130,7 +129,7 @@ export default function LoginPage() {
         {/* Register Link */}
         <p className="mt-8 text-center text-sm text-gray-600">
           Don't have an account?{' '}
-          <Link to="/register" className="font-semibold text-primary hover:underline">
+          <Link to="/register" className="font-semibold text-blue-600 hover:underline">
             Sign up
           </Link>
         </p>

@@ -58,7 +58,6 @@ export default function HotelListPage() {
   const [priceMax, setPriceMax] = useState(1000);
   const [ecoOnly, setEcoOnly] = useState(false);
   const [selectedAmenities, setSelectedAmenities] = useState([]);
-
   const allAmenities = [...new Set(HOTELS.flatMap(h => h.amenities))];
 
   const toggleAmenity = (a) => {
@@ -75,24 +74,30 @@ export default function HotelListPage() {
       const matchesEco = !ecoOnly || hotel.ecoFriendly;
       const matchesAmenities = selectedAmenities.length === 0 ||
         selectedAmenities.every(a => hotel.amenities.includes(a));
-
       return matchesSearch && matchesPrice && matchesEco && matchesAmenities;
     });
   }, [search, priceMax, ecoOnly, selectedAmenities]);
 
+  const resetFilters = () => {
+    setSearch(''); setCheckIn(''); setCheckOut(''); setGuests(1);
+    setPriceMax(1000); setEcoOnly(false); setSelectedAmenities([]);
+  };
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-purple-50">
-      {/* Hero Section */}
-      <div className="bg-gradient-to-r from-primary to-secondary text-white py-16">
+      {/* Hero Section - Dark Text */}
+      <div className="bg-gradient-to-r from-blue-100 to-purple-100 py-16">
         <div className="max-w-7xl mx-auto px-6 text-center">
-          <h1 className="text-5xl md:text-6xl font-bold mb-4">Find Your Perfect Stay</h1>
-          <p className="text-xl opacity-90">Luxury hotels in Asia & Europe</p>
+          <h1 className="text-5xl md:text-6xl font-bold text-gray-900 mb-4">
+            Find Your Perfect Stay
+          </h1>
+          <p className="text-xl text-gray-700">Luxury hotels in Asia & Europe</p>
         </div>
       </div>
 
       {/* Search Bar */}
       <div className="max-w-7xl mx-auto px-6 -mt-10 relative z-10">
-        <div className="bg-white rounded-2xl shadow-2xl p-6 md:p-8">
+        <div className="bg-white rounded-2xl shadow-xl p-6 md:p-8">
           <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
             <div className="md:col-span-2">
               <label className="block text-sm font-medium text-gray-700 mb-2">Where to?</label>
@@ -101,7 +106,7 @@ export default function HotelListPage() {
                 placeholder="City, hotel name..."
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition"
+                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition"
               />
             </div>
             <div>
@@ -110,7 +115,7 @@ export default function HotelListPage() {
                 type="date"
                 value={checkIn}
                 onChange={(e) => setCheckIn(e.target.value)}
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary"
+                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition"
               />
             </div>
             <div>
@@ -119,7 +124,7 @@ export default function HotelListPage() {
                 type="date"
                 value={checkOut}
                 onChange={(e) => setCheckOut(e.target.value)}
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary"
+                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition"
               />
             </div>
             <div>
@@ -127,7 +132,8 @@ export default function HotelListPage() {
               <select
                 value={guests}
                 onChange={(e) => setGuests(e.target.value)}
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary"
+                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition appearance-none bg-white"
+                style={{ backgroundImage: `url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3e%3c/svg%3e")`, backgroundPosition: 'right 0.5rem center', backgroundRepeat: 'no-repeat', backgroundSize: '1.5em' }}
               >
                 {[1,2,3,4,5,6].map(n => (
                   <option key={n} value={n}>{n} Guest{n > 1 ? 's' : ''}</option>
@@ -135,7 +141,7 @@ export default function HotelListPage() {
               </select>
             </div>
           </div>
-          <button className="mt-6 w-full bg-primary text-white py-3 rounded-lg font-semibold hover:bg-blue-700 transition transform hover:scale-105 flex items-center justify-center">
+          <button className="mt-6 w-full bg-blue-600 text-white py-3 rounded-lg font-semibold hover:bg-blue-700 transition flex items-center justify-center shadow-md">
             <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
             </svg>
@@ -146,15 +152,15 @@ export default function HotelListPage() {
 
       <div className="max-w-7xl mx-auto px-6 py-12">
         <div className="flex flex-col lg:flex-row gap-8">
-          {/* Filters Sidebar */}
+          {/* Filters Sidebar - Lighter Shadow */}
           <aside className="lg:w-80">
-            <div className="bg-white rounded-2xl shadow-xl p-6 sticky top-6">
+            <div className="bg-white rounded-2xl shadow-lg p-6 sticky top-6">
               <h3 className="text-xl font-bold text-gray-800 mb-6">Refine Your Search</h3>
 
               {/* Price Slider */}
               <div className="mb-6">
                 <label className="block text-sm font-medium text-gray-700 mb-3">
-                  Max Price: <span className="font-bold text-primary">${priceMax}</span>
+                  Max Price: <span className="font-bold text-blue-600">${priceMax}</span>
                 </label>
                 <input
                   type="range"
@@ -163,25 +169,27 @@ export default function HotelListPage() {
                   step="50"
                   value={priceMax}
                   onChange={(e) => setPriceMax(e.target.value)}
-                  className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer slider-accent"
+                  className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer"
                   style={{
-                    background: `linear-gradient(to right, #1D4ED8 0%, #1D4ED8 ${(priceMax - 100) / 9}%, #e5e7eb ${(priceMax - 100) / 9}%, #e5e7eb 100%)`
+                    background: `linear-gradient(to right, #2563eb 0%, #2563eb ${(priceMax - 100) / 9}%, #e5e7eb ${(priceMax - 100) / 9}%, #e5e7eb 100%)`
                   }}
                 />
               </div>
 
               {/* Eco Friendly */}
               <div className="mb-6">
-                <label className="flex items-center">
+                <label className="flex items-center cursor-pointer">
                   <input
                     type="checkbox"
                     checked={ecoOnly}
                     onChange={(e) => setEcoOnly(e.target.checked)}
-                    className="w-5 h-5 text-primary rounded focus:ring-primary"
+                    className="w-5 h-5 text-blue-600 rounded focus:ring-blue-500"
                   />
                   <span className="ml-3 text-sm font-medium text-gray-700 flex items-center">
                     Eco-Friendly
-                    <span className="ml-2 text-green-600">Leaf Icon</span>
+                    <svg className="w-4 h-4 ml-1 text-green-600" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M3 10a7 7 0 1114 0 7 7 0 01-14 0zm7-6a1 1 0 00-1 1v2.5a1 1 0 001 1h2.5a1 1 0 001-1V5a1 1 0 00-1-1h-2.5zM9 9a1 1 0 011-1h2.5a1 1 0 011 1v2.5a1 1 0 01-1 1H10a1 1 0 01-1-1V9z" clipRule="evenodd" />
+                    </svg>
                   </span>
                 </label>
               </div>
@@ -191,12 +199,12 @@ export default function HotelListPage() {
                 <h4 className="font-medium text-gray-800 mb-3">Popular Amenities</h4>
                 <div className="space-y-3">
                   {allAmenities.slice(0, 6).map(amenity => (
-                    <label key={amenity} className="flex items-center">
+                    <label key={amenity} className="flex items-center cursor-pointer">
                       <input
                         type="checkbox"
                         checked={selectedAmenities.includes(amenity)}
                         onChange={() => toggleAmenity(amenity)}
-                        className="w-4 h-4 text-primary rounded focus:ring-primary"
+                        className="w-4 h-4 text-blue-600 rounded focus:ring-blue-500"
                       />
                       <span className="ml-3 text-sm text-gray-600">{amenity}</span>
                     </label>
@@ -205,11 +213,8 @@ export default function HotelListPage() {
               </div>
 
               <button
-                onClick={() => {
-                  setSearch(''); setCheckIn(''); setCheckOut(''); setGuests(1);
-                  setPriceMax(1000); setEcoOnly(false); setSelectedAmenities([]);
-                }}
-                className="mt-6 w-full bg-gray-100 text-gray-700 py-2 rounded-lg font-medium hover:bg-gray-200 transition"
+                onClick={resetFilters}
+                className="mt-6 w-full bg-gray-100 text-gray-800 py-2 rounded-lg font-medium hover:bg-gray-200 transition"
               >
                 Clear Filters
               </button>
@@ -222,7 +227,8 @@ export default function HotelListPage() {
               <p className="text-gray-600 font-medium">
                 {filteredHotels.length} {filteredHotels.length === 1 ? 'hotel' : 'hotels'} available
               </p>
-              <select className="px-4 py-2 border border-gray-300 rounded-lg text-sm focus:ring-primary focus:border-primary">
+              <select className="px-4 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 transition appearance-none bg-white"
+                style={{ backgroundImage: `url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3e%3c/svg%3e")`, backgroundPosition: 'right 0.5rem center', backgroundRepeat: 'no-repeat', backgroundSize: '1.5em' }}>
                 <option>Sort: Recommended</option>
                 <option>Price: Low to High</option>
                 <option>Price: High to Low</option>
@@ -235,7 +241,7 @@ export default function HotelListPage() {
                 <Link
                   key={hotel.id}
                   to={`/hotel/${hotel.id}`}
-                  className="bg-white rounded-2xl shadow-xl overflow-hidden hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 group"
+                  className="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 group"
                 >
                   <div className="relative h-64 overflow-hidden">
                     <img
@@ -243,22 +249,24 @@ export default function HotelListPage() {
                       alt={hotel.name}
                       className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                    
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                   
                     {hotel.ecoFriendly && (
-                      <div className="absolute top-4 left-4 bg-green-500 text-white px-3 py-1 rounded-full text-xs font-bold flex items-center">
-                        <span className="mr-1">Leaf Icon</span> Eco
+                      <div className="absolute top-4 left-4 bg-green-600 text-white px-3 py-1 rounded-full text-xs font-bold flex items-center shadow-md">
+                        <svg className="w-3 h-3 mr-1" fill="currentColor" viewBox="0 0 20 20">
+                          <path fillRule="evenodd" d="M3 10a7 7 0 1114 0 7 7 0 01-14 0zm7-6a1 1 0 00-1 1v2.5a1 1 0 001 1h2.5a1 1 0 001-1V5a1 1 0 00-1-1h-2.5zM9 9a1 1 0 011-1h2.5a1 1 0 011 1v2.5a1 1 0 01-1 1H10a1 1 0 01-1-1V9z" clipRule="evenodd" />
+                        </svg>
+                        Eco
                       </div>
                     )}
-                    <div className="absolute top-4 right-4 bg-white text-primary px-4 py-2 rounded-full font-bold text-lg shadow-lg">
+                    <div className="absolute top-4 right-4 bg-white text-blue-600 px-4 py-2 rounded-full font-bold text-lg shadow-lg">
                       ${hotel.price}
                       <span className="text-xs block text-gray-600">/night</span>
                     </div>
                   </div>
-
                   <div className="p-6">
                     <div className="flex justify-between items-start mb-3">
-                      <h3 className="text-xl font-bold text-gray-800 group-hover:text-primary transition">
+                      <h3 className="text-xl font-bold text-gray-800 group-hover:text-blue-600 transition">
                         {hotel.name}
                       </h3>
                       <div className="flex items-center bg-amber-50 px-2 py-1 rounded-full">
@@ -268,18 +276,16 @@ export default function HotelListPage() {
                         <span className="ml-1 text-sm font-bold text-amber-700">{hotel.rating}</span>
                       </div>
                     </div>
-
                     <p className="text-gray-600 mb-3 flex items-center">
-                      <svg className="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <svg className="w-4 h-4 mr-1 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                       </svg>
                       {hotel.location}
                     </p>
-
                     <div className="flex flex-wrap gap-2 mb-4">
                       {hotel.amenities.slice(0, 3).map(a => (
-                        <span key={a} className="text-xs bg-blue-50 text-primary px-3 py-1 rounded-full font-medium">
+                        <span key={a} className="text-xs bg-blue-50 text-blue-700 px-3 py-1 rounded-full font-medium">
                           {a}
                         </span>
                       ))}
@@ -287,12 +293,11 @@ export default function HotelListPage() {
                         <span className="text-xs text-gray-500">+{hotel.amenities.length - 3} more</span>
                       )}
                     </div>
-
                     <div className="flex justify-between items-center">
                       <span className="text-sm text-green-600 font-medium">
                         {hotel.roomsAvailable} rooms left
                       </span>
-                      <span className="text-primary font-bold text-lg group-hover:translate-x-1 transition">
+                      <span className="text-blue-600 font-bold text-lg group-hover:translate-x-1 transition">
                         View Details →
                       </span>
                     </div>
